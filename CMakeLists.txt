@@ -23,8 +23,10 @@ if(NOT CMAKE_MSVC_RUNTIME_LIBRARY)
     endif()
 endif()
 
+
+
 if(NOT TARGET Freetype::Freetype)
-    find_package(Freetype REQUIRED)
+    add_subdirectory(freetype/)
 endif()
 
 file(GLOB_RECURSE MSDFGEN_CORE_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "core/*.h" "core/*.hpp")
