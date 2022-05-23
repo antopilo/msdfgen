@@ -1,8 +1,8 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-option(MSDFGEN_CORE_ONLY "Only build the core library with no dependencies" OFF)
-option(MSDFGEN_BUILD_STANDALONE "Build the msdfgen standalone executable" ON)
+option(MSDFGEN_CORE_ONLY "Only build the core library with no dependencies" ON)
+option(MSDFGEN_BUILD_STANDALONE "Build the msdfgen standalone executable" OFF)
 option(MSDFGEN_USE_OPENMP "Build with OpenMP support for multithreaded code" OFF)
 option(MSDFGEN_USE_CPP11 "Build with C++11 enabled" ON)
 option(MSDFGEN_USE_SKIA "Build with the Skia library" OFF)
@@ -79,18 +79,6 @@ if(NOT MSDFGEN_CORE_ONLY)
     add_library(msdfgen-all INTERFACE)
     add_library(msdfgen::msdfgen ALIAS msdfgen-all)
     target_link_libraries(msdfgen-all INTERFACE msdfgen::msdfgen-core msdfgen::msdfgen-ext)
-endif()
-
-# Standalone executable
-if(MSDFGEN_BUILD_STANDALONE)
-    set(MSDFGEN_STANDALONE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
-    if(MSVC)
-        set(MSDFGEN_STANDALONE_SOURCES ${MSDFGEN_STANDALONE_SOURCES} "${CMAKE_CURRENT_SOURCE_DIR}/msdfgen.rc")
-    endif()
-    add_executable(msdfgen ${MSDFGEN_STANDALONE_SOURCES})
-    target_compile_definitions(msdfgen PUBLIC MSDFGEN_STANDALONE)
-    target_link_libraries(msdfgen PUBLIC msdfgen::msdfgen)
-    set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT msdfgen)
 endif()
 
 # Installation
