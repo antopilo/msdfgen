@@ -4,7 +4,7 @@
 #include "import-svg.h"
 
 #include <cstdio>
-#include <tinyxml2.h>
+#include "../include/tinyxml2.h"
 #include "../core/arithmetics.hpp"
 
 #define ARC_SEGMENTS_PER_PI 2

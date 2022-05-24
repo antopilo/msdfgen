@@ -2,7 +2,7 @@
 #include "save-png.h"
 
 #include <cstring>
-#include <lodepng.h>
+#include "../include/lodepng.h"
 #include "../core/pixel-conversion.hpp"
 
 namespace msdfgen {
